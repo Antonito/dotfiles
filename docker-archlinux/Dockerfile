@@ -21,7 +21,9 @@ RUN pacman -S --noconfirm git           && \
 # Install C/C++ dev tools
 RUN pacman -S --noconfirm valgrind      && \
     pacman -S --noconfirm cmake         && \
-    pacman -S --noconfirm clang
+    pacman -S --noconfirm nasm          && \
+    pacman -S --noconfirm clang         && \
+    pacman -S --noconfirm gdb
 
 # Install python dev tools
 RUN pacman -S --noconfirm python        && \
@@ -46,9 +48,10 @@ RUN pacman -S --noconfirm nodejs        && \
 RUN /usr/bin/fish -c "omf install bobthefish"
 COPY config.fish $HOME/.config/fish/config.fish
 
+# Setup GDB
+RUN curl -Lo $HOME/.gdbinit git.io/.gdbinit
+
 # Setup Go environment
-# TODO: Use host Go folder
-# TODO: Allow cross-compilation
 RUN mkdir -p $HOME/go/src
 ENV GOPATH $HOME/go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
