@@ -40,6 +40,11 @@ RUN pacman -S --noconfirm nodejs        && \
     curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash && \
     /usr/bin/fish -c "fisher FabioAntunes/fish-nvm"
 
+# Install text editor
+RUN pacman -S --noconfirm neovim        && \
+    curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 #
 # -- Setup --
 #
@@ -48,6 +53,11 @@ RUN pacman -S --noconfirm nodejs        && \
 RUN /usr/bin/fish -c "omf install bobthefish"
 COPY config.fish $HOME/.config/fish/config.fish
 
+# Setup Neovim
+RUN mkdir -p $HOME/.config/nvim
+COPY init.vim $HOME/.config/nvim/init.vim
+RUN nvim -E -c PlugInstall -c qa! ; exit 0
+
 # Setup GDB
 RUN curl -Lo $HOME/.gdbinit git.io/.gdbinit
 
@@ -55,7 +65,6 @@ RUN curl -Lo $HOME/.gdbinit git.io/.gdbinit
 RUN mkdir -p $HOME/go/src
 ENV GOPATH $HOME/go
 ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
-
 
 # Cleanup
 RUN rm -rf /tmp/* /var/tmp/*
