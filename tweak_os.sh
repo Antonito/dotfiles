@@ -202,6 +202,9 @@ defaults write com.apple.dock showhidden -bool true;ok
 running "Make Dock more transparent"
 defaults write com.apple.dock hide-mirror -bool true;ok
 
+running "Don’t display the annoying prompt when quitting iTerm"
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false;ok
+
 running "Avoid .DS_Files on USB volumes"
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
