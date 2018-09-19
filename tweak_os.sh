@@ -10,6 +10,9 @@ running "closing any system preferences to prevent issues with automated changes
 osascript -e 'tell application "System Preferences" to quit'
 ok
 
+running "always boot in verbose mode (not MacOS GUI mode)"
+sudo nvram boot-args="-v";ok
+
 running "Disable remote login"
 sudo systemsetup -setremotelogin off
 
@@ -31,6 +34,11 @@ running "Create a zero-byte file instead"
 sudo touch /Private/var/vm/sleepimage;ok
 running "…and make sure it can’t be rewritten"
 sudo chflags uchg /Private/var/vm/sleepimage;ok
+
+running "Disable disk image verification"
+defaults write com.apple.frameworks.diskimages skip-verify -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true;ok
 
 running "Increase window resize speed for Cocoa applications"
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001;ok
@@ -62,8 +70,24 @@ defaults write com.apple.finder ShowStatusBar -bool true;ok
 running "Show path bar"
 defaults write com.apple.finder ShowPathbar -bool true;ok
 
+running "Allow text selection in Quick Look"
+defaults write com.apple.finder QLEnableTextSelection -bool true;ok
+
+running "Display full POSIX path as Finder window title"
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true;ok
+
+running "When performing a search, search the current folder by default"
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf";ok
+
+running "Use list view in all Finder windows by default"
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv";ok
+
 running "Avoid creating .DS_Store files on network volumes"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true;ok
+
+running "Disable the warning before emptying the Trash"
+defaults write com.apple.finder WarnOnEmptyTrash -bool false;ok
 
 running "Empty Trash securely by default"
 defaults write com.apple.finder EmptyTrashSecurely -bool true;ok
@@ -164,6 +188,58 @@ running "Enable the debug menu in Disk Utility"
 defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
 defaults write com.apple.DiskUtility advanced-image-options -bool true;ok
 
+running "Setting Dark bar and hub mode"
+osascript -e 'tell application "System Events" to tell appearance preferences to set dark mode to true'; ok
+running "Auto-hide Menu bar"
+defaults write NSGlobalDomain _HIHideMenuBar -bool false; ok
+running "Auto-hide Dock"
+defaults write com.apple.dock autohide -bool true;ok
+running "Super fast Dock auto-hide"
+defaults write com.apple.dock autohide-delay -float 0
+defaults write com.apple.dock autohide-time-modifier -float 0.5; ok
+running "Make Dock icons of hidden applications translucent"
+defaults write com.apple.dock showhidden -bool true;ok
+running "Make Dock more transparent"
+defaults write com.apple.dock hide-mirror -bool true;ok
+
+running "Avoid .DS_Files on USB volumes"
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+
+running "Disable press-and-hold for keys in favor of key repeat"
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false; ok
+
+running "Set a blazingly fast keyboard repeat rate"
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10; ok
+
+running "Disable the “Are you sure you want to open this application?” dialog"
+defaults write com.apple.LaunchServices LSQuarantine -bool false;ok
+
+running "Set Desktop as the default location for new Finder windows"
+defaults write com.apple.finder NewWindowTarget -string "PfDe"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/";ok
+
+running "Remove Guest from Boot Menu"
+sudo fdesetup remove -user Guest
+sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool NO;
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server AllowGuestAccess -bool NO;
+sudo defaults write /Library/Preferences/com.apple.AppleFileServer guestAccess -bool NO;
+ok
+running "Deleting Guest user account"
+sudo dscl . delete /Users/Guest
+ok
+
+bot "Remove unwanted apps"
+running 'Deleting Chess app'
+sudo rm -rf /Applications/Chess.app; ok
+running 'Deleting DVD Player app'
+sudo rm -rf /Applications/DVD\ Player.app; ok
+running 'Deleting Stickies app'
+sudo rm -rf /Applications/Stickies.app; ok
+running 'Deleting Grapher app'
+sudo rm -rf /Applications/Grapher.app; ok
+
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
@@ -185,7 +261,6 @@ for app in "Activity Monitor" \
 	"SizeUp" \
 	"Spectacle" \
 	"SystemUIServer" \
-	"Terminal" \
 	"Transmission" \
 	"Tweetbot" \
 	"Twitter" \

@@ -5,5 +5,5 @@ if status --is-interactive
     set -g theme_show_exit_status yes
 
     # Shell customization
-    set -g LSCOLORS Gxfxcxdxbxegedabagacad
+    set -gx LSCOLORS Gxfxcxdxbxegedabagacad
 end
