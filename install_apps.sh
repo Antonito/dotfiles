@@ -129,7 +129,7 @@ cp ./fish/config.fish $HOME/.config/fish/config.fish
 rsync -a ./fish/functions/ $HOME/.config/fish/functions/
 
 # Configure git
-# TODO
+cp ./.gitconfig $HOME/
 
 # Configure Caprine
 ./caprine/install.sh

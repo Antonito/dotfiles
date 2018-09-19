@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Install config
-mkdir -p ~/.config/iterm2/
-cp com.googlecode.iterm2.plist ~/.config/iterm2/
+mkdir -p $HOME/.config/iterm2/
+cp com.googlecode.iterm2.plist $HOME/.config/iterm2/
 
 # Specify the preferences directory
 defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "~/.config/iterm2"
