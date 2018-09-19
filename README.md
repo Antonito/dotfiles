@@ -14,10 +14,9 @@ You should set-up your own `$HOME/.gitconfig`
 ## Features
 
 - MacOS tweaks (see `tweak_os.sh` for more informations)
-- Installs with `brew`:
+- Installs with `brew`, `brew cask` or `mas`:
 
   - `git`
-  - `mas`
   - `python3`
   - `Slack`
   - `Telegram`
@@ -45,7 +44,7 @@ You should set-up your own `$HOME/.gitconfig`
 - Default shell is `fish`, with `bobthefish` theme
 
   - Custom command `check-update` (update applications installed with `brew`, `brew cask` and `mas`)
-  - Custom command `rarch-dev` with starts an archlinux Docker container with all my development tools (ASM, C, C++, NodeJS, Python and Go)
+  - Custom command `rarch-dev` which starts an archlinux Docker container with all my development tools (ASM, C, C++, NodeJS, Python and Go)
 - Dock is configured with `iTerm`, `Spotify`, `Chrome`, `Spark`, `Slack` and `Telegram`
 - Caprine configured with Dark mode
 - iTerm configured (fonts, key mapping)
