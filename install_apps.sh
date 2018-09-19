@@ -147,7 +147,7 @@ rsync -a ./fish/functions/ $HOME/.config/fish/functions/
 # TODO
 
 # Configure iTerm2
-# TODO
+./iterm2/install.sh
 
 # Configure Google-Chrome
 # TODO
