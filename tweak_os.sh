@@ -208,6 +208,20 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false;ok
 running "Avoid .DS_Files on USB volumes"
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
+running "Enable the automatic update check"
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+
+running "Check for software updates daily, not just once per week"
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+running "Download newly available updates in background"
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+
+running "Install System data files & security updates"
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+
+running "Turn on app auto-update"
+defaults write com.apple.commerce AutoUpdate -bool true
 
 running "Disable press-and-hold for keys in favor of key repeat"
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false; ok

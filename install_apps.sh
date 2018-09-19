@@ -25,10 +25,10 @@ require_brew ruby
 # Dependencies
 # ---------------
 bot "Installing dependencies"
-require_brew git &
-require_brew mas &
-require_brew fontconfig &
-require_brew python3 &
+require_brew git
+require_brew mas
+require_brew fontconfig
+require_brew python3
 wait
 
 # ---------------
@@ -45,13 +45,14 @@ wait
 # Mail
 # ---------------
 bot "Installing communication tools"
-require_mas "Spark" "1176895641" &
+#require_mas "Spark" "1176895641" &
 
 # ---------------
 # Media
 # ---------------
 bot "Installing Media"
 require_cask spotify &
+require_cask vlc &
 
 wait
 
@@ -60,7 +61,7 @@ wait
 # ---------------
 bot "Installing Text Editors"
 #require_mas "Xcode" "497799835"
-require_brew neovim &
+require_brew neovim
 require_cask visual-studio-code &
 require_cask atom &
 wait
@@ -78,8 +79,8 @@ bot "Installing Desktop Utilities"
 # Utility
 # ---------------
 bot "Installing Utilities"
-require_brew git-flow &
-require_brew fish &
+require_brew git-flow
+require_brew fish
 require_cask iterm2 &
 require_cask google-chrome &
 require_cask dashlane &
