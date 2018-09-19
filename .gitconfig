@@ -1,0 +1,7 @@
+[user]
+	name = Antoine Bache
+	email = antoine.bache@epitech.eu
+[credential]
+	helper = osxkeychain
+[color]
+	ui = auto
