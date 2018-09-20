@@ -41,33 +41,35 @@ function prepare_script() {
 function login_to_app_store() {
   info "Logging into app store..."
   if mas account >/dev/null; then
-      success "Already logged in."
+    success "Already logged in."
   else
-      open -a "/Applications/App Store.app"
-      until (mas account > /dev/null);
-      do
-          sleep 3
-      done
-      success "Login to app store successful."
+    info "Please enter your Apple Id login"
+    read apple_id
+    mas signin --dialog $apple_id
+    until (mas account > /dev/null);
+    do
+      sleep 3
+    done
+    success "Login to app store successful."
   fi
 }
 
 function install_homebrew() {
-    info "Installing Homebrew..."
-    if hash brew 2>/dev/null; then
-        success "Homebrew already exists."
+  info "Installing Homebrew..."
+  if hash brew 2>/dev/null; then
+    success "Homebrew already exists."
+  else
+    url=https://raw.githubusercontent.com/Homebrew/install/master/install
+    if /usr/bin/ruby -e "$(curl -fsSL ${url})" < /dev/null ; then
+      brew update
+      brew upgrade
+      brew cask upgrade
+      success "Homebrew installation succeeded."
     else
-        url=https://raw.githubusercontent.com/Homebrew/install/master/install
-        if /usr/bin/ruby -e "$(curl -fsSL ${url})" < /dev/null ; then
-            brew update
-            brew upgrade
-            brew cask upgrade
-            success "Homebrew installation succeeded."
-        else
-            error "Homebrew installation failed."
-            exit 1
-        fi
+      error "Homebrew installation failed."
+      exit 1
     fi
+  fi
 }
 
 function prepare_homebrew() {
@@ -78,19 +80,19 @@ function prepare_homebrew() {
 }
 
 function clone_dotfiles_repo() {
-    info "Cloning dotfiles repository into ${DOTFILES_REPO} ..."
-    if test -e $DOTFILES_REPO; then
-        substep "${DOTFILES_REPO} already exists."
-        pull_latest $DOTFILES_REPO
+  info "Cloning dotfiles repository into ${DOTFILES_REPO} ..."
+  if test -e $DOTFILES_REPO; then
+    substep "${DOTFILES_REPO} already exists."
+    pull_latest $DOTFILES_REPO
+  else
+    url=https://github.com/Antonito/dotfiles
+    if git clone --depth=1 "$url" $DOTFILES_REPO; then
+      success "Cloned into ${DOTFILES_REPO}"
     else
-        url=https://github.com/Antonito/dotfiles
-        if git clone --depth=1 "$url" $DOTFILES_REPO; then
-            success "Cloned into ${DOTFILES_REPO}"
-        else
-            error "Cloning into ${DOTFILES_REPO} failed."
-            exit 1
-        fi
+      error "Cloning into ${DOTFILES_REPO} failed."
+      exit 1
     fi
+  fi
 }
 
 function tweak_macOS() {
