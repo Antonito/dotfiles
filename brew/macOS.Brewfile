@@ -7,6 +7,7 @@ brew "python3"
 brew "neovim"
 brew "git-flow"
 brew "fish"
+brew "docker-completion"
 
 ##################### cask #####################
 cask "slack"
