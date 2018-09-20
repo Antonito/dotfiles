@@ -122,11 +122,11 @@ function cleanup() {
   rm -rf ${DOTFILES_REPO}
   brew cleanup > /dev/null 2>&1
 
+  info "Syncing files ..."
   sync
-  info "CMD+Q this Terminal and reboot, please"
-  #read reboot_opt
-  #osascript -e 'tell app "System Events" to restart'
-  #killall "Terminal"
+  info "Rebooting ..."
+  osascript -e 'tell app "System Events" to restart'
+  killall "Terminal"
 }
 
 ##

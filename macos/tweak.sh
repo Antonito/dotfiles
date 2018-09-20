@@ -46,6 +46,9 @@ function tweak_general() {
   defaults write com.apple.LaunchServices LSQuarantine -bool false
   substep "Enable AirDrop over Ethernet and on unsupported Macs running Lion"
   defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
+  substep "Prevent system from re-opening apps on restart"
+  sudo chown root $HOME/Library/Preferences/ByHost/com.apple.loginwindow*
+  sudo chmod 000 $HOME/Library/Preferences/ByHost/com.apple.loginwindow*
 }
 
 function tweak_disk() {
