@@ -84,21 +84,21 @@ function setup_caprine() {
   cd ./caprine; ./install.sh; cd -
 }
 
-function setup_spark() {
-  # TODO
-}
+#function setup_spark() {
+#  # TODO
+#}
 
-function setup_neovim() {
-  # TODO (Keep it installed on mac ?)
-}
+#function setup_neovim() {
+#  # TODO (Keep it installed on mac ?)
+#}
 
-function setup_vscode() {
-  # TODO
-}
+#function setup_vscode() {
+#  # TODO
+#}
 
-function setup_atom() {
-  # TODO
-}
+#function setup_atom() {
+#  # TODO
+#}
 
 function setup_iterm() {
   substep "Configuring iTerm"
@@ -117,17 +117,17 @@ function setup_docker() {
   ln -s /Applications/Docker.app/Contents/Resources/bin/docker /usr/local/bin/
 }
 
-function setup_dashlane() {
-  # TODO
-}
+#function setup_dashlane() {
+#  # TODO
+#}
 
-function setup_boom3d() {
-  # TODO
-}
+#function setup_boom3d() {
+#  # TODO
+#}
 
-function setup_daisydisk() {
-  # TODO
-}
+#function setup_daisydisk() {
+#  # TODO
+#}
 
 set_fish_default_shell
 setup_fish
@@ -135,13 +135,13 @@ setup_dock
 setup_skype_for_business
 setup_git
 setup_caprine
-setup_spark
-setup_neovim
-setup_vscode
-setup_atom
+#setup_spark
+#setup_neovim
+#setup_vscode
+#setup_atom
 setup_iterm
 setup_chrome
 setup_docker
-setup_dashlane
-setup_boom3d
-setup_daisydisk
+#setup_dashlane
+#setup_boom3d
+#setup_daisydisk
