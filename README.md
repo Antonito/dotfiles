@@ -5,15 +5,13 @@
 
 ## Usage
 
-Run `./install.sh`
-
-> TODO: Make a curl-able file
+Run `curl https://raw.githubusercontent.com/Antonito/dotfiles/master/install.sh | bash`
 
 You should set-up your own `$HOME/.gitconfig`
 
 ## Features
 
-- MacOS tweaks (see `tweak_os.sh` for more informations)
+- MacOS tweaks (see `macos/tweak.sh` for more informations)
 - Installs with `brew`, `brew cask` or `mas`:
 
   - `git`
