@@ -49,9 +49,8 @@ function install_homebrew() {
     if hash brew 2>/dev/null; then
         success "Homebrew already exists."
     else
-        # TODO: modify to remove user input
         url=https://raw.githubusercontent.com/Homebrew/install/master/install
-        if /usr/bin/ruby -e "$(curl -fsSL ${url})"; then
+        if /usr/bin/ruby -e "$(curl -fsSL ${url})" < /dev/null ; then
             brew update
             brew upgrade
             brew cask upgrade
