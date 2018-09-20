@@ -149,9 +149,9 @@ function setup_docker() {
 #  # TODO
 #}
 
-#function setup_daisydisk() {
-#  # TODO
-#}
+function setup_daisydisk() {
+  cd ./daisydisk; ./install.sh; cd -
+}
 
 set_fish_default_shell
 setup_fish
@@ -169,4 +169,4 @@ setup_chrome
 setup_docker
 #setup_dashlane
 #setup_boom3d
-#setup_daisydisk
+setup_daisydisk

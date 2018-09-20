@@ -9,6 +9,12 @@ Run `curl https://raw.githubusercontent.com/Antonito/dotfiles/master/install.sh 
 
 You should set-up your own `$HOME/.gitconfig`
 
+## Customization
+
+If you own a Daisydisk license, you can place it as `./daisydisk/License.DaisyDisk`
+
+Your Daisydisk license is located at `~/Library/Application Support/DaisyDisk/License.DaisyDisk`
+
 ## Features
 
 - MacOS tweaks (see `macos/tweak.sh` for more informations)
@@ -50,6 +56,9 @@ You should set-up your own `$HOME/.gitconfig`
 ## Note
 
 `docker-archlinux/gui` image is an experimentation
+
 I am trying to find a way to use GUI applications ran inside a docker container, from a MacOS host.
+
 I've tried Xquartz, but there's too much latency and it does not support Retina display... I've had better results with VNC
+
 Any suggestion is welcomed !
