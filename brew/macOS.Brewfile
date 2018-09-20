@@ -35,7 +35,7 @@ cask "font-source-code-pro"
 
 ##################### mas #####################
 mas "Spark", id: 1176895641
-mas "Xcode", id: 497799835
-mas "Keynote", id: 409183694
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
+#mas "Xcode", id: 497799835
+#mas "Keynote", id: 409183694
+#mas "Numbers", id: 409203825
+#mas "Pages", id: 409201541
