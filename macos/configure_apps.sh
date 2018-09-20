@@ -86,6 +86,11 @@ function setup_caprine() {
   cd ./caprine; ./install.sh; cd -
 }
 
+function setup_gdb() {
+  substep "Configuring gdb"
+  cd ./gdb; ./install.sh; cd -
+}
+
 #function setup_spark() {
 #  # TODO
 #}
@@ -136,6 +141,7 @@ setup_fish
 setup_dock
 setup_skype_for_business
 setup_git
+setup_gdb
 setup_caprine
 #setup_spark
 #setup_neovim

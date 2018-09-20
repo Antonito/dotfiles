@@ -66,6 +66,9 @@ function tweak_disk() {
 
   substep "Save to disk (not to iCloud) by default"
   defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+  substep "Activate Filevault"
+  sudo fdesetup enable
 }
 
 function tweak_finder() {
