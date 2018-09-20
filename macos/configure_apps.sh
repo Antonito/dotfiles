@@ -50,22 +50,24 @@ function setup_dock() {
       --remove 'Pages'                \
       --remove 'Numbers'              \
       --remove 'Keynote'              \
+      --no-restart
       --allhomes
   substep "Removing Skype for Business"
-  python dockutil --remove 'Skype for Business'
+  python dockutil --remove 'Skype for Business' --no-restart
   substep "Adding iTerm"
-  python dockutil --add /Applications/iTerm.app
+  python dockutil --add /Applications/iTerm.app --no-restart
   substep "Adding Spotify"
-  python dockutil --add /Applications/Spotify.app
+  python dockutil --add /Applications/Spotify.app --no-restart
   substep "Adding Google Chrome"
-  python dockutil --add /Applications/Google\ Chrome.app
+  python dockutil --add /Applications/Google\ Chrome.app --no-restart
   substep "Adding Spark"
-  python dockutil --add /Applications/Spark.app
+  python dockutil --add /Applications/Spark.app --no-restart
   substep "Adding Slack"
-  python dockutil --add /Applications/Slack.app
+  python dockutil --add /Applications/Slack.app --no-restart
   substep "Adding Telegram"
-  python dockutil --add /Applications/Telegram.app
+  python dockutil --add /Applications/Telegram.app --no-restart
   rm -f dockutil
+  killall Dock
 }
 
 function setup_skype_for_business() {
