@@ -12,11 +12,6 @@ function main() {
   cleanup
 }
 
-read reboot_opt
-osascript -e 'tell app "System Events" to restart'
-killall "Terminal"
-
-
 ##
 ## Functions
 ##
