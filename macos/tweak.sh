@@ -1,33 +1,6 @@
 #!/usr/bin/env bash
 
-# Functions
-function coloredEcho() {
-    local exp="$1";
-    local color="$2";
-    local arrow="$3";
-    if ! [[ $color =~ '^[0-9]$' ]] ; then
-       case $(echo $color | tr '[:upper:]' '[:lower:]') in
-        black) color=0 ;;
-        red) color=1 ;;
-        green) color=2 ;;
-        yellow) color=3 ;;
-        blue) color=4 ;;
-        magenta) color=5 ;;
-        cyan) color=6 ;;
-        white|*) color=7 ;; # white or invalid color
-       esac
-    fi
-    tput bold;
-    tput setaf "$color";
-    echo "$arrow $exp";
-    tput sgr0;
-}
-
-function substep() {
-    coloredEcho "$1" magenta "  ..."
-}
-
-# TODO: Separate in functions
+source ./macos/output_tools.sh
 
 function init_tweaks() {
   substep "Cleanup homebrew"
@@ -129,6 +102,8 @@ function tweak_finder() {
   defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"
   substep "Show the ~/Library folder"
   sudo chflags nohidden ~/Library
+  substep "Show the /Volumes folder"
+  sudo chflags nohidden /Volumes
 }
 
 function tweak_spotlight() {
@@ -182,9 +157,15 @@ function tweak_dock() {
   defaults write com.apple.dock showhidden -bool true
   substep "Make Dock more transparent"
   defaults write com.apple.dock hide-mirror -bool true
+  substep "Speed up Mission Control animations"
+  defaults write com.apple.dock expose-animation-duration -float 0.1
 }
 
 function tweak_safari() {
+  substep "Safari Privacy: don’t send search queries to Apple"
+  defaults write com.apple.Safari UniversalSearchEnabled -bool false
+  defaults write com.apple.Safari SuppressSearchSuggestions -bool true
+
   substep "Set Safari’s home page to ‘about:blank’ for faster loading"
   defaults write com.apple.Safari HomePage -string "about:blank"
 
@@ -210,6 +191,36 @@ function tweak_safari() {
 
   substep "Add a context menu item for showing the Web Inspector in web views"
   defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
+
+  substep "Warn about fraudulent websites"
+  defaults write com.apple.Safari WarnAboutFraudulentWebsites -bool true
+
+  substep "Disable plug-ins"
+  defaults write com.apple.Safari WebKitPluginsEnabled -bool false
+  defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2PluginsEnabled -bool false
+
+  substep "Disable Java"
+  defaults write com.apple.Safari WebKitJavaEnabled -bool false
+  defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaEnabled -bool false
+
+  substep "Block pop-up windows"
+  defaults write com.apple.Safari WebKitJavaScriptCanOpenWindowsAutomatically -bool false
+  defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2JavaScriptCanOpenWindowsAutomatically -bool false
+
+  substep "Enable 'Do Not Track'"
+  defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+}
+
+function tweak_mail() {
+  substep "Disable send and reply animations in Mail.app"
+  defaults write com.apple.mail DisableReplyAnimations -bool true
+  defaults write com.apple.mail DisableSendAnimations -bool true
+
+  substep "Copy email addresses as 'foo@example.com' instead of 'Foo Bar <foo@example.com>' in Mail.app"
+  defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
+
+  substep "Disable inline attachments (just show the icons)"
+  defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 }
 
 function tweak_activity_monitor() {
@@ -251,7 +262,14 @@ function tweak_controllers() {
   defaults write NSGlobalDomain InitialKeyRepeat -int 10 
 }
 
-function tweak_iterm() {
+function tweak_term() {
+  substep "Only use UTF-8 in Terminal.app"
+  defaults write com.apple.terminal StringEncodings -array 4
+
+  substep "Enable Secure Keyboard Entry in Terminal.app"
+  # See: https://security.stackexchange.com/a/47786/8918
+  defaults write com.apple.terminal SecureKeyboardEntry -bool true
+
   substep "Don’t display the annoying prompt when quitting iTerm"
   defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 }
@@ -331,10 +349,11 @@ tweak_finder
 tweak_spotlight
 tweak_safari
 tweak_dock
+tweak_mail
 tweak_activity_monitor
 tweak_updates
 tweak_controllers
-tweak_iterm
+tweak_term
 tweak_time_machine
 tweak_disk_utility
 tweak_printer

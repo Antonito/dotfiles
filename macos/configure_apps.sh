@@ -1,31 +1,6 @@
 #!/usr/bin/env bash
 
-# Functions
-function coloredEcho() {
-    local exp="$1";
-    local color="$2";
-    local arrow="$3";
-    if ! [[ $color =~ '^[0-9]$' ]] ; then
-       case $(echo $color | tr '[:upper:]' '[:lower:]') in
-        black) color=0 ;;
-        red) color=1 ;;
-        green) color=2 ;;
-        yellow) color=3 ;;
-        blue) color=4 ;;
-        magenta) color=5 ;;
-        cyan) color=6 ;;
-        white|*) color=7 ;; # white or invalid color
-       esac
-    fi
-    tput bold;
-    tput setaf "$color";
-    echo "$arrow $exp";
-    tput sgr0;
-}
-
-function substep() {
-    coloredEcho "$1" magenta "  ..."
-}
+source ./macos/output_tools.sh
 
 # TODO: Separate in functions
 
@@ -113,8 +88,10 @@ cd ./caprine; ./install.sh; cd -
 # Configure iTerm2
 cd ./iterm2/; ./install.sh; cd -;
 
-# Configure Google-Chrome
-# TODO
+# Configure Google-Chrome as default browser
+git clone --depth=1 https://github.com/kerma/defaultbrowser /tmp/defaultbrowser
+make -C /tmp/defaultbrowser ; /tmp/defaultbrowser/defaultbrowser chrome
+rm -rf /tmp/defaultbrowser
 
 # Configure Dashlane
 # TODO
