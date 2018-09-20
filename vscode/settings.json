@@ -1,0 +1,9 @@
+{
+	"editor.renderWhitespace": "all",
+	"editor.formatOnSave": false,
+	"editor.tabSize": 4,
+	"editor.detectIndentation": true,
+	"editor.trimAutoWhitespace": true,
+	"editor.insertSpaces": true,
+	"diffEditor.ignoreTrimWhitespace": true
+}

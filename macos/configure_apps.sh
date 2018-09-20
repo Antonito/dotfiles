@@ -99,9 +99,26 @@ function setup_gdb() {
 #  # TODO (Keep it installed on mac ?)
 #}
 
-#function setup_vscode() {
-#  # TODO
-#}
+function setup_vscode() {
+  substep "Configuring VSCode"
+
+  substep "Installing x86_64 assembly support plugin"
+  code --install-extension 13xforever.language-x86-64-assembly
+  substep "Installing C / C++ plugin"
+  code --install-extension ms-vscode.cpptools
+  substep "Installing clang-format plugin"
+  code --install-extension xaver.clang-format
+  substep "Installing ESLint plugin"
+  code --install-extension dbaeumer.vscode-eslint
+  substep "Installing Go plugin"
+  code --install-extension ms-vscode.go
+  substep "Installing Python plugin"
+  code --install-extension ms-python.python
+  substep "Installing GitLens plugin"
+  code --install-extension eamodio.gitlens
+
+  cd ./vscode; ./install.sh; cd -
+}
 
 #function setup_atom() {
 #  # TODO
@@ -145,7 +162,7 @@ setup_gdb
 setup_caprine
 #setup_spark
 #setup_neovim
-#setup_vscode
+setup_vscode
 #setup_atom
 setup_iterm
 setup_chrome
