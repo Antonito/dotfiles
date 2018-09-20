@@ -6,9 +6,9 @@ function main() {
   prepare_homebrew
   login_to_app_store
   clone_dotfiles_repo
-  tweak_macOS
   install_packages_with_brewfile
   configure_packages
+  tweak_macOS
   cleanup
 }
 
