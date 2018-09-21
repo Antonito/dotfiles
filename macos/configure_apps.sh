@@ -120,9 +120,19 @@ function setup_vscode() {
   cd ./vscode; ./install.sh; cd -
 }
 
-#function setup_atom() {
-#  # TODO
-#}
+function setup_atom() {
+  substep "Configuring Atom"
+  substep "Installing Nuclide"
+  apm install nuclide
+  substep "Installing language-babel package"
+  apm install language-babel 
+  substep "Installing recommended nuclide packages"
+  apm install file-icons tool-bar highlight-selected              \
+    language-babel language-graphql language-haskell language-ini \
+    language-kotlin language-lua language-ocaml language-rust     \
+    language-swift language-thrift language-scala                 \
+    nuclide-format-js set-syntax sort-lines
+}
 
 function setup_iterm() {
   substep "Configuring iTerm"
@@ -163,7 +173,7 @@ setup_caprine
 #setup_spark
 #setup_neovim
 setup_vscode
-#setup_atom
+setup_atom
 setup_iterm
 setup_chrome
 setup_docker
