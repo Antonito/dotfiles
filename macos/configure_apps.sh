@@ -80,7 +80,7 @@ function setup_skype_for_business() {
 
 function setup_git() {
   substep "Configuring git"
-  cp ./.gitconfig $HOME/
+  cd ./git; ./install.sh; cd -
 }
 
 function setup_caprine() {

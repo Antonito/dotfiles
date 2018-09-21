@@ -5,3 +5,6 @@
 	helper = osxkeychain
 [color]
 	ui = auto
+[core]
+	excludesfile = ~/.config/git/.gitignore
+	editor = nvim
