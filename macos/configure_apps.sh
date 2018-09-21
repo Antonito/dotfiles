@@ -28,6 +28,8 @@ function setup_fish() {
 
 function setup_dock() {
   substep "Configuring Dock"
+  substep "Restarting Dock"
+  killall Dock
   curl -o dockutil https://raw.githubusercontent.com/kcrawford/dockutil/master/scripts/dockutil
   substep "Deleting useless elements from the Dock"
   python dockutil                     \
@@ -50,10 +52,8 @@ function setup_dock() {
       --remove 'Pages'                \
       --remove 'Numbers'              \
       --remove 'Keynote'              \
-      --no-restart
+      --no-restart                    \
       --allhomes
-  substep "Removing Skype for Business"
-  python dockutil --remove 'Skype for Business' --no-restart
   substep "Adding iTerm"
   python dockutil --add /Applications/iTerm.app --no-restart
   substep "Adding Spotify"
@@ -66,6 +66,8 @@ function setup_dock() {
   python dockutil --add /Applications/Slack.app --no-restart
   substep "Adding Telegram"
   python dockutil --add /Applications/Telegram.app --no-restart
+  substep "Removing Skype for Business"
+  python dockutil --remove 'Skype for Business' --no-restart
   rm -f dockutil
   killall Dock
 }
