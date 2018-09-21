@@ -14,10 +14,14 @@ function tweak_general() {
   # Boot / power management
   substep "Always boot in verbose mode (not MacOS GUI mode)"
   sudo nvram boot-args="-v"
+  substep "Disable sound at boot"
+  sudo nvram SystemAudioVolume=" "
   substep "Restart automatically if the computer freezes"
   sudo systemsetup -setrestartfreeze on
   substep "Never go into computer sleep mode"
   sudo systemsetup -setcomputersleep Off > /dev/null
+  substep "Set standby delay to 24 hours (default is 1 hour)"
+  sudo pmset -a standbydelay 86400
 
   # Login
   substep "Disable remote login"
@@ -49,6 +53,31 @@ function tweak_general() {
   substep "Prevent system from re-opening apps on restart"
   sudo chown root $HOME/Library/Preferences/ByHost/com.apple.loginwindow*
   sudo chmod 000 $HOME/Library/Preferences/ByHost/com.apple.loginwindow*
+  substep "Show battery level in Menu Bar"
+  defaults write com.apple.menuextra.battery ShowPercent -bool true
+  substep "Require password immediately after sleep or screen saver begins"
+  defaults write com.apple.screensaver askForPassword -int 1
+  defaults write com.apple.screensaver askForPasswordDelay -int 0
+
+  # Language
+  substep "Setting language to American English"
+  defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
+  substep "Setting currency to Euro"
+  defaults write NSGlobalDomain AppleLocale -string "en_US@currency=EUR"
+  substep "Setting Measurement units to Metric"
+  defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+  defaults write NSGlobalDomain AppleMetricUnits -bool true
+  # 'sudo systemsetup -listtimezones' for other values
+  substep "Setting Timezone"
+  sudo systemsetup -settimezone "America/Los_Angeles" > /dev/null
+
+  # Computer Name
+  COMPUTER_NAME="MacbookPro"
+  substep "Setting computer name to \"$COMPUTER_NAME\""
+  sudo scutil --set ComputerName "$COMPUTER_NAME"
+  sudo scutil --set HostName "$COMPUTER_NAME"
+  sudo scutil --set LocalHostName "$COMPUTER_NAME"
+  sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 }
 
 function tweak_disk() {
