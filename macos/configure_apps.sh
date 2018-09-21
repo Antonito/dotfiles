@@ -29,7 +29,7 @@ function setup_fish() {
 function setup_dock() {
   substep "Configuring Dock"
   substep "Restarting Dock"
-  killall Dock
+  sync
   curl -o dockutil https://raw.githubusercontent.com/kcrawford/dockutil/master/scripts/dockutil
   substep "Deleting useless elements from the Dock"
   python dockutil                     \
@@ -52,6 +52,7 @@ function setup_dock() {
       --remove 'Pages'                \
       --remove 'Numbers'              \
       --remove 'Keynote'              \
+      --remove 'Skype for Business'   \
       --no-restart                    \
       --allhomes
   substep "Adding iTerm"
@@ -118,6 +119,8 @@ function setup_vscode() {
   code --install-extension ms-python.python
   substep "Installing GitLens plugin"
   code --install-extension eamodio.gitlens
+  substep "Installing Dash integration plugin"
+  code --install-extension deerawan.vscode-dash
 
   cd ./vscode; ./install.sh; cd -
 }
