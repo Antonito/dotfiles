@@ -62,21 +62,20 @@ function tweak_general() {
   # Language
   substep "Setting language to American English"
   defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
-  substep "Setting currency to Euro"
-  defaults write NSGlobalDomain AppleLocale -string "en_US@currency=EUR"
+  substep "Setting currency to $CONF_CURRENCY"
+  defaults write NSGlobalDomain AppleLocale -string "en_US@currency=$CONF_CURRENCY"
   substep "Setting Measurement units to Metric"
   defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
   defaults write NSGlobalDomain AppleMetricUnits -bool true
   # 'sudo systemsetup -listtimezones' for other values
-  substep "Setting Timezone"
-  sudo systemsetup -settimezone "America/Los_Angeles" > /dev/null
+  substep "Setting Timezone to $CONF_TIMEZONE"
+  sudo systemsetup -settimezone "$CONF_TIMEZONE" > /dev/null
 
   # Computer Name
-  COMPUTER_NAME="MacbookPro"
-  substep "Setting computer name to \"$COMPUTER_NAME\""
-  sudo scutil --set ComputerName "$COMPUTER_NAME"
-  sudo scutil --set HostName "$COMPUTER_NAME"
-  sudo scutil --set LocalHostName "$COMPUTER_NAME"
+  substep "Setting computer name to \"$CONF_COMPUTER_NAME\""
+  sudo scutil --set ComputerName "$CONF_COMPUTER_NAME"
+  sudo scutil --set HostName "$CONF_COMPUTER_NAME"
+  sudo scutil --set LocalHostName "$CONF_COMPUTER_NAME"
   sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 }
 

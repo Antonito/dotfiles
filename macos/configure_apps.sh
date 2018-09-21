@@ -151,10 +151,6 @@ function setup_docker() {
   ln -s /Applications/Docker.app/Contents/Resources/bin/docker /usr/local/bin/
 }
 
-#function setup_dashlane() {
-#  # TODO
-#}
-
 #function setup_boom3d() {
 #  # TODO
 #}
@@ -177,6 +173,5 @@ setup_atom
 setup_iterm
 setup_chrome
 setup_docker
-#setup_dashlane
 #setup_boom3d
 setup_daisydisk

@@ -14,6 +14,17 @@ function main() {
 }
 
 ##
+## Setup default variables
+## These variables can be overwritten
+##
+
+# 'sudo systemsetup -listtimezones' for other values
+export CONF_TIMEZONE=${CONF_TIMEZONE:="America/Los_Angeles"}
+export CONF_CURRENCY=${CONF_CURRENCY:="EUR"}
+export CONF_COMPUTER_NAME=${CONF_COMPUTER_NAME:="MacbookPro"}
+export CONF_GIT_DOTFILES_REPO=${CONF_GIT_DOTFILES_REPO:="https://github.com/Antonito/dotfiles"}
+
+##
 ## Functions
 ##
 
@@ -85,7 +96,7 @@ function clone_dotfiles_repo() {
     substep "${DOTFILES_REPO} already exists."
     pull_latest $DOTFILES_REPO
   else
-    url=https://github.com/Antonito/dotfiles
+    url=$CONF_GIT_DOTFILES_REPO
     if git clone --depth=1 "$url" $DOTFILES_REPO; then
       success "Cloned into ${DOTFILES_REPO}"
     else
