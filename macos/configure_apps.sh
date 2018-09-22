@@ -100,6 +100,11 @@ function setup_gdb() {
 
 function setup_neovim() {
   substep "Configuring Nvim" 
+
+  substep "Installing python3 helper" 
+  pip3 install --user neovim
+
+  substep "Installing configuration" 
   cd ./nvim; ./install.sh; cd -
 }
 
