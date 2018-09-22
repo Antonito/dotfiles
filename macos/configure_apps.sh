@@ -169,6 +169,10 @@ function setup_bettertouchtool() {
   cd bettertouchtool; ./install.sh; cd -;
 }
 
+function setup_dash() {
+  substep "Configuring Dash"
+  cd dash; ./install.sh; cd -;
+}
 
 #function setup_boom3d() {
 #  # TODO
@@ -182,6 +186,7 @@ set_fish_default_shell
 setup_ruby
 setup_fish
 setup_bettertouchtool
+setup_dash
 setup_skype_for_business
 setup_git
 setup_gdb

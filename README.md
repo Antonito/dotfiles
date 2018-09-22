@@ -32,6 +32,7 @@ These script will install several software licenses, if provided
 |-------------------|--------------------------------------------|---------------------------------------------------------|
 | Better Touch Tool | bettertouchtool/bettertouchtool.bttlicense | $APP_SUPPORT/BetterTouchTool/bettertouchtool.bttlicense |
 | Daisy Disk        | daisydisk/License.DaisyDisk                | $APP_SUPPORT/DaisyDisk/License.DaisyDisk                |
+| Dash              | dash/license.dash-license                  | $APP_SUPPORT/Dash/License/license.dash-license          |
 
 ## Features
 
