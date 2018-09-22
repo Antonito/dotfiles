@@ -328,6 +328,11 @@ function tweak_printer() {
   defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
 }
 
+function tweak_itunes() {
+  substep "Don't automatically sync devices with iTunes when plugged"
+  defaults write com.apple.itunes dontAutomaticallySyncIPods -bool true
+}
+
 function remove_guest_account() {
   substep "Remove Guest from Boot Menu"
   sudo fdesetup remove -user Guest
@@ -391,6 +396,7 @@ tweak_term
 tweak_time_machine
 tweak_disk_utility
 tweak_printer
+tweak_itunes
 remove_guest_account
 remove_unwanted_apps
 reload_apps
