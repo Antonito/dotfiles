@@ -56,7 +56,7 @@ COPY config.fish $HOME/.config/fish/config.fish
 
 # Setup Neovim
 RUN mkdir -p $HOME/.config/nvim
-COPY init.vim $HOME/.config/nvim/init.vim
+COPY nvim/ $HOME/.config/nvim
 RUN nvim -E -c PlugInstall -c qa! ; exit 0
 RUN pip3 install --user neovim && pip2 install --user neovim
 RUN nvim -E -c UpdateRemotePlugins -c qa! ; exit 0

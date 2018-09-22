@@ -98,9 +98,10 @@ function setup_gdb() {
 #  # TODO
 #}
 
-#function setup_neovim() {
-#  # TODO (Keep it installed on mac ?)
-#}
+function setup_neovim() {
+  substep "Configuring Nvim" 
+  cd ./nvim; ./install.sh; cd -
+}
 
 function setup_vscode() {
   substep "Configuring VSCode"
@@ -172,7 +173,7 @@ setup_git
 setup_gdb
 setup_caprine
 #setup_spark
-#setup_neovim
+setup_neovim
 setup_vscode
 setup_atom
 setup_iterm
