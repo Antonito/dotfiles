@@ -8,7 +8,9 @@ function set_fish_default_shell() {
     substep "Setting Fish as default shell"
     sudo dscl . -change /Users/$USER UserShell $SHELL /usr/local/bin/fish > /dev/null 2>&1
   fi
+}
 
+function setup_ruby() {
   if [[ -d "/Library/Ruby/Gems/2.0.0" ]]; then
     substep "Fixing Ruby Gems Directory Permissions\n"
     sudo chown -R $(whoami) /Library/Ruby/Gems/2.0.0
@@ -162,6 +164,12 @@ function setup_docker() {
   ln -s /Applications/Docker.app/Contents/Resources/bin/docker /usr/local/bin/
 }
 
+function setup_bettertouchtool() {
+  substep "Configuring Better Touch Tool"
+  cd bettertouchtool; ./install.sh; cd -;
+}
+
+
 #function setup_boom3d() {
 #  # TODO
 #}
@@ -171,8 +179,9 @@ function setup_daisydisk() {
 }
 
 set_fish_default_shell
+setup_ruby
 setup_fish
-setup_dock
+setup_bettertouchtool
 setup_skype_for_business
 setup_git
 setup_gdb
@@ -186,3 +195,4 @@ setup_chrome
 setup_docker
 #setup_boom3d
 setup_daisydisk
+setup_dock
