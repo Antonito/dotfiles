@@ -2,6 +2,22 @@
 
 source ./macos/output_tools.sh
 
+function init() {
+  curl -o /tmp/dockutil https://raw.githubusercontent.com/kcrawford/dockutil/master/scripts/dockutil
+  curl -o /tmp/omf.fish https://get.oh-my.fish
+  git clone --depth=1 https://github.com/kerma/defaultbrowser /tmp/defaultbrowser
+  make -C /tmp/defaultbrowser
+  
+  # Reload Dock, Skype For Business fix ??
+  killall Dock
+}
+
+function deinit() {
+  rm -f /tmp/dockutil
+  rm -f /tmp/omf.fish
+  rm -rf /tmp/defaultbrowser
+}
+
 function set_fish_default_shell() {
   CURRENTSHELL=$(dscl . -read /Users/$USER UserShell | awk '{print $2}')
   if [[ "$CURRENTSHELL" != "/usr/local/bin/fish" ]]; then
@@ -20,7 +36,7 @@ function setup_ruby() {
 function setup_fish() {
   substep "Configuring fish shell"
   substep "Installing omf"
-  curl -L https://get.oh-my.fish > /tmp/omf.fish && bash -c "fish /tmp/omf.fish --noninteractive"; rm -f /tmp/omf.fish
+  bash -c "fish /tmp/omf.fish --noninteractive"
   substep "Installing bobthefish theme"
   fish -c "omf install bobthefish"
   substep "Installing Fish custom configuration"
@@ -32,9 +48,8 @@ function setup_dock() {
   substep "Configuring Dock"
   substep "Restarting Dock"
   sync
-  curl -o dockutil https://raw.githubusercontent.com/kcrawford/dockutil/master/scripts/dockutil
   substep "Deleting useless elements from the Dock"
-  python dockutil                     \
+  python /tmp/dockutil                     \
       --remove 'System Preferences'   \
       --remove 'iTunes'               \
       --remove 'iBooks'               \
@@ -58,20 +73,19 @@ function setup_dock() {
       --no-restart                    \
       --allhomes
   substep "Adding iTerm"
-  python dockutil --add /Applications/iTerm.app --no-restart
+  python /tmp/dockutil --add /Applications/iTerm.app --no-restart
   substep "Adding Spotify"
-  python dockutil --add /Applications/Spotify.app --no-restart
+  python /tmp/dockutil --add /Applications/Spotify.app --no-restart
   substep "Adding Google Chrome"
-  python dockutil --add /Applications/Google\ Chrome.app --no-restart
+  python /tmp/dockutil --add /Applications/Google\ Chrome.app --no-restart
   substep "Adding Spark"
-  python dockutil --add /Applications/Spark.app --no-restart
+  python /tmp/dockutil --add /Applications/Spark.app --no-restart
   substep "Adding Slack"
-  python dockutil --add /Applications/Slack.app --no-restart
+  python /tmp/dockutil --add /Applications/Slack.app --no-restart
   substep "Adding Telegram"
-  python dockutil --add /Applications/Telegram.app --no-restart
+  python /tmp/dockutil --add /Applications/Telegram.app --no-restart
   substep "Removing Skype for Business"
-  python dockutil --remove 'Skype for Business' --no-restart
-  rm -f dockutil
+  python /tmp/dockutil --remove 'Skype for Business' --no-restart
   killall Dock
 }
 
@@ -165,9 +179,7 @@ function setup_iterm() {
 
 function setup_chrome() {
   substep "Setting Google Chrome as default browser"
-  git clone --depth=1 https://github.com/kerma/defaultbrowser /tmp/defaultbrowser
-  make -C /tmp/defaultbrowser ; /tmp/defaultbrowser/defaultbrowser chrome
-  rm -rf /tmp/defaultbrowser
+  /tmp/defaultbrowser/defaultbrowser chrome
 }
 
 function setup_docker() {
@@ -203,6 +215,7 @@ function setup_daisydisk() {
   cd ./daisydisk; ./install.sh; cd -
 }
 
+init # Must be first
 set_fish_default_shell
 setup_ruby
 setup_fish
@@ -224,3 +237,4 @@ setup_docker
 #setup_boom3d
 setup_daisydisk
 setup_dock
+deinit  # Must be last
