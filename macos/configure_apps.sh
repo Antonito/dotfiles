@@ -117,22 +117,24 @@ function setup_neovim() {
 function setup_vscode() {
   substep "Configuring VSCode"
 
+  mkdir -p $HOME/.config/vscode
+
   substep "Installing x86_64 assembly support plugin"
-  code --install-extension 13xforever.language-x86-64-assembly
+  code --extensions-dir $HOME/.config/vscode --install-extension 13xforever.language-x86-64-assembly
   substep "Installing C / C++ plugin"
-  code --install-extension ms-vscode.cpptools
+  code --extensions-dir $HOME/.config/vscode --install-extension ms-vscode.cpptools
   substep "Installing clang-format plugin"
-  code --install-extension xaver.clang-format
+  code --extensions-dir $HOME/.config/vscode --install-extension xaver.clang-format
   substep "Installing ESLint plugin"
-  code --install-extension dbaeumer.vscode-eslint
+  code --extensions-dir $HOME/.config/vscode --install-extension dbaeumer.vscode-eslint
   substep "Installing Go plugin"
-  code --install-extension ms-vscode.go
+  code --extensions-dir $HOME/.config/vscode --install-extension ms-vscode.go
   substep "Installing Python plugin"
-  code --install-extension ms-python.python
+  code --extensions-dir $HOME/.config/vscode --install-extension ms-python.python
   substep "Installing GitLens plugin"
-  code --install-extension eamodio.gitlens
+  code --extensions-dir $HOME/.config/vscode --install-extension eamodio.gitlens
   substep "Installing Dash integration plugin"
-  code --install-extension deerawan.vscode-dash
+  code --extensions-dir $HOME/.config/vscode --install-extension deerawan.vscode-dash
 
   cd ./vscode; ./install.sh; cd -
 }

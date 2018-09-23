@@ -134,6 +134,10 @@ function cleanup() {
   rm -rf ${DOTFILES_REPO}
   brew cleanup > /dev/null 2>&1
 
+  rm -rf $HOME/.bash_sessions
+  rm -f $HOME/.bash_history
+  rm -rf $HOME/.cache
+
   info "Syncing files ..."
   sync
   info "Rebooting ..."
