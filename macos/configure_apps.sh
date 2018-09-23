@@ -161,15 +161,28 @@ function setup_atom() {
   export ATOM_HOME="$HOME/.config/atom"
 
   substep "Installing Nuclide"
-  apm install nuclide
+  (apm list | grep "nuclide@") || apm install nuclide
   substep "Installing language-babel package"
-  apm install language-babel 
+  (apm list | grep "language-babel@") || apm install language-babel 
   substep "Installing recommended nuclide packages"
-  apm install file-icons tool-bar highlight-selected              \
-    language-babel language-graphql language-haskell language-ini \
-    language-kotlin language-lua language-ocaml language-rust     \
-    language-swift language-thrift language-scala                 \
-    nuclide-format-js set-syntax sort-lines
+  (apm list | grep "file-icons@") || apm install file-icons
+  (apm list | grep "tool-bar@") || apm install tool-bar
+  (apm list | grep "sort-lines@") || apm install sort-lines
+  (apm list | grep "highlight-selected@") || apm install highlight-selected
+  (apm list | grep "language-babel@") || apm install language-babel
+  (apm list | grep "language-graphql@") || apm install language-graphql
+  (apm list | grep "language-haskell@") || apm install language-haskell
+  (apm list | grep "language-ini@") || apm install language-ini
+  (apm list | grep "language-kotlin@") || apm install language-kotlin
+  (apm list | grep "language-swift@") || apm install language-swift
+  (apm list | grep "language-thrift@") || apm install language-thrift
+  (apm list | grep "language-lua@") || apm install language-lua
+  (apm list | grep "language-ocaml@") || apm install language-ocaml
+  (apm list | grep "language-rust@") || apm install language-rust
+  (apm list | grep "language-scala@") || apm install language-scala
+  (apm list | grep "set-syntax@") || apm install set-syntax
+  (apm list | grep "nuclide-format-js@") || apm install nuclide-format-js
+  (apm list | grep "sort-lines@") || apm install sort-lines
 }
 
 function setup_iterm() {
