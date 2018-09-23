@@ -4,7 +4,7 @@ source ./macos/output_tools.sh
 
 function init() {
   curl -o /tmp/dockutil https://raw.githubusercontent.com/kcrawford/dockutil/master/scripts/dockutil
-  curl -o /tmp/omf.fish https://get.oh-my.fish
+  curl -Lo /tmp/omf.fish https://get.oh-my.fish
   git clone --depth=1 https://github.com/kerma/defaultbrowser /tmp/defaultbrowser
   make -C /tmp/defaultbrowser
   
