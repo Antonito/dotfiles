@@ -120,21 +120,23 @@ function setup_vscode() {
   mkdir -p $HOME/.config/vscode
 
   substep "Installing x86_64 assembly support plugin"
-  code --extensions-dir $HOME/.config/vscode --install-extension 13xforever.language-x86-64-assembly
+  # TODO: Pull request on VSCode repository, add Env variable
+  # code --extensions-dir $HOME/.config/vscode --install-extension 13xforever.language-x86-64-assembly
+  code --install-extension 13xforever.language-x86-64-assembly
   substep "Installing C / C++ plugin"
-  code --extensions-dir $HOME/.config/vscode --install-extension ms-vscode.cpptools
+  code --install-extension ms-vscode.cpptools
   substep "Installing clang-format plugin"
-  code --extensions-dir $HOME/.config/vscode --install-extension xaver.clang-format
+  code --install-extension xaver.clang-format
   substep "Installing ESLint plugin"
-  code --extensions-dir $HOME/.config/vscode --install-extension dbaeumer.vscode-eslint
+  code --install-extension dbaeumer.vscode-eslint
   substep "Installing Go plugin"
-  code --extensions-dir $HOME/.config/vscode --install-extension ms-vscode.go
+  code --install-extension ms-vscode.go
   substep "Installing Python plugin"
-  code --extensions-dir $HOME/.config/vscode --install-extension ms-python.python
+  code --install-extension ms-python.python
   substep "Installing GitLens plugin"
-  code --extensions-dir $HOME/.config/vscode --install-extension eamodio.gitlens
+  code --install-extension eamodio.gitlens
   substep "Installing Dash integration plugin"
-  code --extensions-dir $HOME/.config/vscode --install-extension deerawan.vscode-dash
+  code --install-extension deerawan.vscode-dash
 
   cd ./vscode; ./install.sh; cd -
 }

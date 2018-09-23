@@ -59,7 +59,7 @@ function tweak_general() {
   defaults write com.apple.screensaver askForPassword -int 1
   defaults write com.apple.screensaver askForPasswordDelay -int 0
   substep "Turn-off Bluetooth"
-  sudo m bluetooth off
+  sudo m bluetooth disable
   substep "Enable MacOS built-in Firewall"
   sudo m firewall enable
 
@@ -84,8 +84,8 @@ function tweak_general() {
 
   # Setting wallpaper
   mkdir -p $HOME/.config
-  curl -o ~/.config/wallpaper.img $CONFIG_WALLPAPER_URL
-  sudo m wallpaper ~/.config/wallpaper.img
+  curl -o $HOME/.config/wallpaper.img $CONFIG_WALLPAPER_URL
+  sudo m wallpaper $HOME/.config/wallpaper.img
 }
 
 function tweak_disk() {
