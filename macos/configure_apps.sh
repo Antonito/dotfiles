@@ -179,6 +179,11 @@ function setup_dash() {
   cd dash; ./install.sh; cd -;
 }
 
+function setup_weechat() {
+  substep "Configuring Weechat"
+  cd weechat; ./install.sh; cd -;
+}
+
 #function setup_boom3d() {
 #  # TODO
 #}
@@ -190,6 +195,7 @@ function setup_daisydisk() {
 set_fish_default_shell
 setup_ruby
 setup_fish
+setup_weechat
 setup_bettertouchtool
 setup_bartender
 setup_dash

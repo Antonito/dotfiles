@@ -10,6 +10,7 @@ brew "watchman"
 brew "fish"
 brew "docker-completion"
 brew "m-cli"
+brew "weechat", args: ["with-aspell", "with-curl", "with-python", "with-perl", "with-ruby", "with-lua", "with-guile"]
 
 ##################### cask #####################
 cask "slack"
