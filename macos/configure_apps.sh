@@ -103,6 +103,10 @@ function setup_gdb() {
 function setup_neovim() {
   substep "Configuring Nvim" 
 
+  substep "Installing nvim plugin manager" 
+  curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
   substep "Installing python3 helper" 
   pip3 install --user neovim
 
