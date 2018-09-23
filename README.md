@@ -21,6 +21,7 @@ These variables will be read from your environment, if provided
 | CONF_CURRENCY          | EUR                                  |
 | CONF_COMPUTER_NAME     | MacbookPro                           |
 | CONF_GIT_DOTFILES_REPO | https://github.com/Antonito/dotfiles |
+| CONFIG_WALLPAPER_URL   |                                      | # TODO
 
 ### Licenses
 

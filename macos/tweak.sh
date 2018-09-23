@@ -58,6 +58,10 @@ function tweak_general() {
   substep "Require password immediately after sleep or screen saver begins"
   defaults write com.apple.screensaver askForPassword -int 1
   defaults write com.apple.screensaver askForPasswordDelay -int 0
+  substep "Turn-off Bluetooth"
+  sudo m bluetooth off
+  substep "Enable MacOS built-in Firewall"
+  sudo m firewall enable
 
   # Language
   substep "Setting language to American English"
@@ -77,6 +81,11 @@ function tweak_general() {
   sudo scutil --set HostName "$CONF_COMPUTER_NAME"
   sudo scutil --set LocalHostName "$CONF_COMPUTER_NAME"
   sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+
+  # Setting wallpaper
+  mkdir -p $HOME/.config
+  curl -o ~/.config/wallpaper.img $CONFIG_WALLPAPER_URL
+  sudo m wallpaper ~/.config/wallpaper.img
 }
 
 function tweak_disk() {

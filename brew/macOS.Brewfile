@@ -9,6 +9,7 @@ brew "git-flow"
 brew "watchman"
 brew "fish"
 brew "docker-completion"
+brew "m-cli"
 
 ##################### cask #####################
 cask "slack"
