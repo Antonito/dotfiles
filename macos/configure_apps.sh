@@ -139,6 +139,9 @@ function setup_vscode() {
 
 function setup_atom() {
   substep "Configuring Atom"
+  mkdir -p $HOME/.config/atom
+  export ATOM_HOME="$HOME/.config/atom"
+
   substep "Installing Nuclide"
   apm install nuclide
   substep "Installing language-babel package"

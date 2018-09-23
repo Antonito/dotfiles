@@ -7,4 +7,5 @@ if status --is-interactive
     # Shell customization
     set -gx LSCOLORS Gxfxcxdxbxegedabagacad
     set -Ux WEECHAT_HOME $HOME/.config/weechat
+    set -Ux ATOM_HOME $HOME/.config/atom
 end
