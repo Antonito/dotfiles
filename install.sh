@@ -95,7 +95,9 @@ function clone_dotfiles_repo() {
   info "Cloning dotfiles repository into ${DOTFILES_REPO} ..."
   if test -e $DOTFILES_REPO; then
     substep "${DOTFILES_REPO} already exists."
-    pull_latest $DOTFILES_REPO
+    cd $DOTFILES_REPO
+    git pull origin master
+    cd -
   else
     url=$CONF_GIT_DOTFILES_REPO
     if git clone --depth=1 "$url" $DOTFILES_REPO; then
