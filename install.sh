@@ -55,14 +55,14 @@ function login_to_app_store() {
   if mas account >/dev/null; then
     success "Already logged in."
   else
-    info "Please enter your Apple Id login"
-    read apple_id
-    mas signin --dialog $apple_id
-    until (mas account > /dev/null);
-    do
-      sleep 3
-    done
-    success "Login to app store successful."
+    #info "Please enter your Apple Id login"
+    #read apple_id
+    #mas signin --dialog $apple_id
+    #until (mas account > /dev/null);
+    #do
+    #  sleep 3
+    #done
+    #success "Login to app store successful."
   fi
 }
 
