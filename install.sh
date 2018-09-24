@@ -55,6 +55,7 @@ function login_to_app_store() {
   if mas account >/dev/null; then
     success "Already logged in."
   else
+    info "Not logged"
     #info "Please enter your Apple Id login"
     #read apple_id
     #mas signin --dialog $apple_id
