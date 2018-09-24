@@ -7,7 +7,12 @@ function init() {
   curl -Lo /tmp/omf.fish https://get.oh-my.fish
   git clone --depth=1 https://github.com/kerma/defaultbrowser /tmp/defaultbrowser
   make -C /tmp/defaultbrowser
-  
+
+  # Setup global environment
+  cp ./macos/environment.plist $HOME/Library/LaunchAgents/environment.plist
+  launchctl load $HOME/Library/LaunchAgents/environment.plist
+  launchctl start $HOME/Library/LaunchAgents/environment.plist
+
   # Reload Dock, Skype For Business fix ??
   killall Dock
 }
