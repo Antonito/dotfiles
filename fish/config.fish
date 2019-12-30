@@ -6,6 +6,13 @@ if status --is-interactive
 
     # Shell customization
     set -gx LSCOLORS Gxfxcxdxbxegedabagacad
-    set -Ux WEECHAT_HOME $HOME/.config/weechat
-    set -Ux ATOM_HOME $HOME/.config/atom
+
+    # Rust setup
+    set -gx CARGO_HOME $HOME/.config/.cargo
+    set -gx RUSTUP_HOME $HOME/.config/.rustup
+
+    set -gx PATH $CARGO_HOME/bin $PATH
+
+    set -Ux LANG en_US.UTF-8
+    set -Ux LC_ALL en_US.UTF-8
 end

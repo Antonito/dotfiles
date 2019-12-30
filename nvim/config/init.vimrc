@@ -13,8 +13,5 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
-" Language support
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
 " Initialize plugin system
 call plug#end()

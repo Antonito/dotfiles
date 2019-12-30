@@ -48,34 +48,3 @@ let g:airline_symbols.maxlinenr = ''
 "----------------------------------------------
 " Enable completing of go pointers
 let g:deoplete#sources#go#pointer = 1
-
-"----------------------------------------------
-" Language: Go
-"----------------------------------------------
-au FileType go set noexpandtab
-au FileType go set shiftwidth=4
-au FileType go set softtabstop=4
-au FileType go set tabstop=4
-
-" Color syntax options
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-
-" Highligh same variables
-let g:go_auto_sameids = 1
-
-" Auto import
-let g:go_fmt_command = "goimports"
-
-let g:go_auto_type_info = 1
-
-" Press F12 to get to source definition, c-T to come back
-au FileType go nmap <F12> <Plug>(go-def)
-
-let g:go_addtags_transform = "snakecase"

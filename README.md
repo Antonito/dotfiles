@@ -40,14 +40,9 @@ These script will install several software licenses, if provided
 - MacOS tweaks (see `macos/tweak.sh` for more informations)
 - MacOS apps and utilities (see `brew/macOS.BrewFile` for more informations)
 - Default shell is `fish`, with `bobthefish` theme
-  - Custom command `check-update` (update applications installed with `brew`, `brew cask` and `mas`)
-  - Custom command `rarch-dev` which starts an archlinux Docker container with all my development tools (ASM, C, C++, NodeJS, Python and Go)
-- Dock is configured with `iTerm`, `Spotify`, `Chrome`, `Spark`, `Slack` and `Telegram`
-- `Chrome` as default browser
-- `Caprine` configured with Dark mode
+- Dock is configured with `iTerm`, `Spotify`, `Slack` and `Telegram`
 - `iTerm` configured (fonts, key mapping)
 - `gdb` configure to use Intel syntax
-- `Atom` configured with `Nuclide`
 - `VSCode` configured for ASM/C/C++/JS/Go/Python development, with `Dash` integration
 
 ## Note

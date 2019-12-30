@@ -372,8 +372,6 @@ function reload_apps() {
     "Contacts"                    \
     "Dock"                        \
     "Finder"                      \
-    "Google Chrome Canary"        \
-    "Google Chrome"               \
     "Mail"                        \
     "Messages"                    \
     "Opera"                       \
